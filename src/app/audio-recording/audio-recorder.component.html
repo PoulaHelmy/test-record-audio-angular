@@ -1,0 +1,22 @@
+<ng-container *ngIf="state === 'forbidden'; else tmpl">
+  Forbidden
+</ng-container>
+<ng-template #tmpl>
+  <div *ngFor="let audio of audioURLs" class="audio-container">
+    <audio-player
+      [audioUrl]="audio"
+      [duration]="audio"
+    ></audio-player>
+  </div>
+  {{state}}
+
+  <div class="record-container">
+    <button
+      (holdTime)="onHold($event)"
+      (start)="onStart()"
+      (stop)="onStop()"
+      holdable
+    >{{ state === 'recording' ? seconds : 'REC' }}</button>
+  </div>
+</ng-template>
+<!--*ngIf="!audioURL"-->

@@ -25,6 +25,7 @@ export class AppComponent implements OnDestroy {
 
     this.audioRecordingService.getRecordedBlob().subscribe((data) => {
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
+      console.log(this.blobUrl);
     });
   }
 

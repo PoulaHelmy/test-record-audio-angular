@@ -1,0 +1,20 @@
+<audio
+  #audioElement
+  (ended)="onEnd()"
+  (loadedmetadata)="onLoaded()"
+  (pause)="onPause()"
+  (playing)="onPlay()"
+  [src]="audioUrl"
+></audio>
+<audio *ngIf="audioUrl" controls>
+  <source [src]="audioUrl" type="audio/webm">
+</audio>
+<div class="audio-wrapper">
+  <div (click)="onClick()" class="play">
+    <i *ngIf="!(isPlaying$ | async)" class="material-icons">p</i>
+    <i *ngIf="isPlaying$ | async" class="material-icons">ps</i>
+  </div>
+  <div *ngIf="isPlaying$ | async" class="time">
+    {{ currentTime$ | async }} / {{ duration }}
+  </div>
+</div>
