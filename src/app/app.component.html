@@ -1,73 +1,11 @@
-<!--<tui-root>-->
-<!--  <tui-accordion class="container">-->
-<!--    <tui-accordion-item>-->
-<!--      Taiga UI cdk-->
-<!--      <ng-template tuiAccordionItemContent>-->
-<!--        Development kit consisting of the low level tools and abstractions-->
-<!--        used to develop Taiga UI Angular entities-->
-<!--      </ng-template>-->
-<!--    </tui-accordion-item>-->
-<!--    <tui-accordion-item>-->
-<!--      Taiga UI core-->
-<!--      <ng-template tuiAccordionItemContent>-->
-<!--        <div #content>-->
-<!--          Basic elements needed to develop components, directives and more-->
-<!--          using Taiga UI design system-->
-<!--        </div>-->
-<!--      </ng-template>-->
-<!--    </tui-accordion-item>-->
-<!--    <tui-accordion-item>-->
-<!--      Taiga UI kit-->
-<!--      <ng-template tuiAccordionItemContent>-->
-<!--        The main set of components used to build Taiga UI based Angular-->
-<!--        applications-->
-<!--      </ng-template>-->
-<!--    </tui-accordion-item>-->
-<!--  </tui-accordion>-->
-<!--  <div class="wrapper">-->
-<!--    <tui-calendar-->
-<!--      (dayClick)="onDayClick($event)"-->
-<!--      (monthChange)="onMonthChangeFirst($event)"-->
-<!--      [(hoveredItem)]="hoveredItem"-->
-<!--      [markerHandler]="markerHandler"-->
-<!--      [maxViewedMonth]="firstMonth"-->
-<!--      [month]="firstMonth"-->
-<!--      [showAdjacent]="false"-->
-<!--      [value]="value"-->
-<!--    ></tui-calendar>-->
-<!--    <tui-calendar-->
-<!--      (dayClick)="onDayClick($event)"-->
-<!--      (monthChange)="onMonthChangeMiddle($event)"-->
-<!--      [(hoveredItem)]="hoveredItem"-->
-<!--      [markerHandler]="markerHandler"-->
-<!--      [maxViewedMonth]="middleMonth"-->
-<!--      [minViewedMonth]="middleMonth"-->
-<!--      [month]="middleMonth"-->
-<!--      [showAdjacent]="false"-->
-<!--      [value]="value"-->
-<!--    ></tui-calendar>-->
-<!--    <tui-calendar-->
-<!--      (dayClick)="onDayClick($event)"-->
-<!--      (monthChange)="onMonthChangeLast($event)"-->
-<!--      [(hoveredItem)]="hoveredItem"-->
-<!--      [markerHandler]="markerHandler"-->
-<!--      [minViewedMonth]="lastMonth"-->
-<!--      [month]="lastMonth"-->
-<!--      [showAdjacent]="false"-->
-<!--      [value]="value"-->
-<!--    ></tui-calendar>-->
-<!--  </div>-->
-<!--  <div *ngIf="value" i18n>Choosen dates: {{value}}</div>-->
-
-<!--</tui-root>-->
-<!--<div style="text-align:center;margin-top: 200px;">-->
-<!--  <button (click)="initiateRecording()" *ngIf="!recording" class="btn btn-primary"-->
-<!--          style="cursor: pointer;background-color: green;color: white;font-size: 40px;"> Start Recording-->
-<!--  </button>-->
-<!--  <button (click)="stopRecording()" *ngIf="recording" class="btn btn-danger"-->
-<!--          style="cursor: pointer;background-color: red;color: white;font-size: 40px;"> Stop Recording-->
-<!--  </button>-->
-<!--  <audio *ngIf="url" controls="">-->
-<!--    <source [src]="sanitize(url)" type="audio/wav">-->
-<!--  </audio>-->
-<!--</div>-->
+<div>
+  <button (click)="startRecording()" *ngIf="!isRecording && !blobUrl" class="start-button">Start Recording</button>
+  <button (click)="stopRecording()" *ngIf="isRecording && !blobUrl" class="stop-button">Stop Recording</button>
+  <button (click)="clearRecordedData()" *ngIf="!isRecording && blobUrl" class="cancel-button">Clear Recording</button>
+  <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+  <div>
+    <audio *ngIf="!isRecording && blobUrl" controls>
+      <source [src]="blobUrl" type="audio/webm">
+    </audio>
+  </div>
+</div>
